@@ -10,9 +10,9 @@ require('./models/User')
 //require('./services/passport') 
 
 //data base connection 
-/* mongoose.connect(keys.databaseURI, { useNewUrlParser: true })
+ mongoose.connect(keys.databaseURI, { useNewUrlParser: true })
 
- */
+ 
 const app = express()
 
 /* //enable cookies 
