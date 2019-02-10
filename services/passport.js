@@ -2,7 +2,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const mongoose = require('mongoose');
 const keys = require('../config/keys');
-/* 
+ 
 const User = mongoose.model('users');
 
 passport.serializeUser((user, done) => {
@@ -14,7 +14,7 @@ passport.deserializeUser((id, done) => {
     done(null, user);
   });
 });
- */
+ 
 passport.use(
   new GoogleStrategy(
     {
@@ -24,7 +24,7 @@ passport.use(
       proxy:true
     },
     (accessToken, refreshToken, profile, done) => {
-/*       User.findOne({ googleId: profile.id }).then(existingUser => {
+       User.findOne({ googleId: profile.id }).then(existingUser => {
         if (existingUser) {
           // we already have a record with the given profile ID
           done(null, existingUser);
@@ -34,7 +34,7 @@ passport.use(
             .save()
             .then(user => done(null, user));
         }
-      }); */
+      }); 
     }
   )
 );

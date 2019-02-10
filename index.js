@@ -15,7 +15,7 @@ require('./services/passport')
  
 const app = express()
 
-/* //enable cookies 
+ //enable cookies 
 app.use(
     cookieSession({
       maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -26,7 +26,6 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 
- */
 
 //routers 
 authRoutes(app)
