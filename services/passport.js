@@ -1,51 +1,39 @@
-const passport = require('passport')
-//const GoogleStratgey = require('passport-google-oauth20').Strategy
-const Keys = require('../config/keys')
-const mongoose = require('mongoose')
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const mongoose = require('mongoose');
+const keys = require('../config/keys');
 
+const User = mongoose.model('users');
 
-const User = mongoose.model('users')
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
 
-
-/* passport.serializeUser((user, done)=>{
-    done(null, user.id);
-})
-
-
-passport.deserializeUser((id, done)=>{
-    User.findById(id)
-    .then((user)=>{
-        done(null, user)
-    })
-}) */
+passport.deserializeUser((id, done) => {
+  User.findById(id).then(user => {
+    done(null, user);
+  });
+});
 
 passport.use(
- /*    new GoogleStratgey({
-        clientID: Keys.googleClientId,
-        clientSecret: Keys.googleClientSecret,
-        callbackURL: '/auth/google/callback',
-        proxy:true
-
-    }, (accessToken, refreshToken, profile, done) => {
-
-        User.findOne({ googleId: profile.id })
-            .then((existingUser) => {
-                if (existingUser) {
-                    //we don have a user with this id 
-                    done(null,existingUser)       
-                
-                } else {
-                    //we don't have this id  create a new user 
-                    new User({  googleId: profile.id })
-                    .save()
-                    .then(user => done(null, user));
-             
-                }
-            })
- 
-
-
-    })
-    */
+  new GoogleStrategy(
+    {
+      clientID: keys.googleClientID,
+      clientSecret: keys.googleClientSecret,
+      callbackURL: '/auth/google/callback'
+    },
+    (accessToken, refreshToken, profile, done) => {
+      User.findOne({ googleId: profile.id }).then(existingUser => {
+        if (existingUser) {
+          // we already have a record with the given profile ID
+          done(null, existingUser);
+        } else {
+          // we don't have a user record with this ID, make a new record!
+          new User({ googleId: profile.id })
+            .save()
+            .then(user => done(null, user));
+        }
+      });
+    }
+  )
 );
-
