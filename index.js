@@ -5,9 +5,9 @@ const passport = require('passport')
 const mongoose = require('mongoose')
 const keys = require('./config/keys')
 // must be required first or it will create error 
-//require('./models/User')
+require('./models/User')
 //require it after the requireing User Model 
-require('./services/passport') 
+//require('./services/passport') 
 
 //data base connection 
 /* mongoose.connect(keys.databaseURI, { useNewUrlParser: true })
