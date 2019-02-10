@@ -27,7 +27,7 @@ passport.use(
 
     }, (accessToken, refreshToken, profile, done) => {
 
-        User.findOne({ googleId: profile.id })
+/*         User.findOne({ googleId: profile.id })
             .then((existingUser) => {
                 if (existingUser) {
                     //we don have a user with this id 
@@ -41,7 +41,7 @@ passport.use(
              
                 }
             })
-
+ */
 
 
     })
