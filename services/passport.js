@@ -1,5 +1,5 @@
 const passport = require('passport')
-const GoogleStratgey = require('passport-google-oauth20').Strategy
+//const GoogleStratgey = require('passport-google-oauth20').Strategy
 const Keys = require('../config/keys')
 const mongoose = require('mongoose')
 
@@ -20,7 +20,7 @@ passport.deserializeUser((id, done)=>{
 }) */
 
 passport.use(
-    new GoogleStratgey({
+ /*    new GoogleStratgey({
         clientID: Keys.googleClientId,
         clientSecret: Keys.googleClientSecret,
         callbackURL: '/auth/google/callback',
@@ -28,7 +28,7 @@ passport.use(
 
     }, (accessToken, refreshToken, profile, done) => {
 
-/*         User.findOne({ googleId: profile.id })
+        User.findOne({ googleId: profile.id })
             .then((existingUser) => {
                 if (existingUser) {
                     //we don have a user with this id 
@@ -42,9 +42,10 @@ passport.use(
              
                 }
             })
- */
+ 
 
 
     })
+    */
 );
 
