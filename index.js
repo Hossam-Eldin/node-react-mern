@@ -35,9 +35,16 @@ authRoutes(app)
 paymentsRoutes(app)
 
 
-app.get("/",(req, res) => {
-    res.send({something: 'working'})
-})
+if (process.env.NODE_ENV ===  'production') {
+   // to serve up the production assets
+   app.use(express.static('client/build'));
+
+   const path = require('path');
+   app.get('*',(req, res) => {
+     res.sendFile(path.resolve(__dirname, 'client','build','index.html'));
+   })
+
+}
 
 // lisent to env port or 5000 
 //const PORT = process.env.PORT || 5000;
