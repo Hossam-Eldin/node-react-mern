@@ -7,6 +7,7 @@ const mongoose = require('mongoose')
 const keys = require('./config/keys')
 // must be required first or it will create error 
 require('./models/User')
+require('./models/Survey')
 //require it after the requireing User Model 
 require('./services/passport') 
 
