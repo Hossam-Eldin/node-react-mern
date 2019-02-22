@@ -1,7 +1,7 @@
 const express = require('express')
 const cookieSession =require('cookie-session')
 const passport = require('passport')
- const authRoutes = require('./routes/authRoutes')
+const authRoutes = require('./routes/authRoutes')
 const paymentsRoutes =require('./routes/paymentsRouters')
 const mongoose = require('mongoose')
 const keys = require('./config/keys')
@@ -10,6 +10,7 @@ require('./models/User')
 require('./models/Survey')
 //require it after the requireing User Model 
 require('./services/passport') 
+const surveyRoutes = require('./routes/surveyRoutes')
 
 //data base connection 
  mongoose.connect(keys.databaseURI, { useNewUrlParser: true })
@@ -34,7 +35,7 @@ app.use(passport.session())
 //routers 
 authRoutes(app)
 paymentsRoutes(app)
-
+surveyRoutes(app)
 
 if (process.env.NODE_ENV ===  'production') {
    // to serve up the production assets

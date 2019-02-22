@@ -1,8 +1,9 @@
-const  mongoose = require('mongose')
-const {Schema} = mongoose
+const mongoose = require('mongoose')
+// const Schema = mongoose.Schema
+const {Schema}= mongoose
 const recipientSchema = require('./Recipient')
 
-const survySchema =new Schema({
+const SurveySchema = new Schema({
     title: String,
     body: String,
     subject: String,
@@ -12,8 +13,8 @@ const survySchema =new Schema({
     _user: { type:Schema.Types.ObjectId, ref: 'User'},
     dateSent: Date,
     lastResponded: Date
-})
+});
 
 
 
-mongoose.model('surveys', survySchema);
+mongoose.model('surveys', SurveySchema)
